@@ -23,8 +23,6 @@ final class RMCharacterListViewViewModel: NSObject {
     private var characters: [RMCharacter] = [] {
         
         didSet {
-            //            print("Updating characters. Current count: \(characters.count)")
-            //            print("Updating cellViewModels. Previous count: \(cellViewModels.count)")
             
             for character in characters {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
@@ -36,7 +34,6 @@ final class RMCharacterListViewViewModel: NSObject {
                     cellViewModels.append(viewModel)
                 }
             }
-            //            print("New cellViewModels count: \(cellViewModels.count)")
         }
     }
     
@@ -70,7 +67,6 @@ final class RMCharacterListViewViewModel: NSObject {
         guard !isLoadingMoreCharacters else {
             return
         }
-        print("fetching more data ")
         isLoadingMoreCharacters = true
         guard let request = RMRequest(url: url) else {
             isLoadingMoreCharacters = false
@@ -93,25 +89,14 @@ final class RMCharacterListViewViewModel: NSObject {
                 let total = originalCount + newCount
                 let startingIndex = total - newCount
                 
-                //                // Debug: Karakter sayısını ve yeni eklenen indexPath'leri yazdır
-                //                print("Original character count: \(originalCount)")
-                //                print("New character count: \(newCount)")
-                //                print("Total character count after fetch: \(total)")
-                
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
                     return IndexPath(row: $0, section: 0)
                 })
-                //                print("Original character count: \(originalCount)")
-                //                print("New character count: \(newCount)")
-                //                print("Total character count after fetch: \(total)")
-                //                print("IndexPaths to add: \(indexPathsToAdd)")
                 
                 strongSelf.characters.append(contentsOf: moreResults)
-                print(String(strongSelf.cellViewModels.count))
-                //                print("Updating characters. Current count: \(strongSelf.characters.count)")
+                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd )
-                    
                     strongSelf.isLoadingMoreCharacters = false
                 }
             case .failure(let failure):

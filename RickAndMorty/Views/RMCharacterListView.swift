@@ -98,17 +98,8 @@ extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
     }
     
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
-        //            DispatchQueue.main.async {
         self.collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)
         }
-        //            }
     }
-    
-    
-    //    func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
-    //        DispatchQueue.main.async {
-    //            self.collectionView.reloadData() // Insert yerine tam reload deneyelim
-    //        }
-    //    }
 }
