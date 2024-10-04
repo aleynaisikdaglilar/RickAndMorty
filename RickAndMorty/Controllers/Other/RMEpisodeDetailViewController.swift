@@ -11,8 +11,10 @@ import UIKit
 final class RMEpisodeDetailViewController: UIViewController {
     
     private let viewModel: RMEpisodeDetailViewViewModel
-
-// MARK: - Init
+    
+    private let detailView = RMEpisodeDetailView()
+    
+    // MARK: - Init
     
     init(url: URL?) {
         self.viewModel = .init(endpointUrl: url)
@@ -22,12 +24,36 @@ final class RMEpisodeDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
-//    MARK: - Lifecycle
+    
+    //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(detailView)
+        addConstraints()
         title = "Episode"
-        view.backgroundColor = .systemGreen
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+    }
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            
+            detailView.topAnchor.constraint(equalTo: view.topAnchor),
+            detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
+            //            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            //            detailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            //            detailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            //            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
+        ])
+    }
+    
+    @objc
+    private func didTapShare() {
+        
     }
 }
