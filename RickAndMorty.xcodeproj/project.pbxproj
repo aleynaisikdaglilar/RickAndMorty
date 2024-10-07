@@ -181,11 +181,11 @@
 		745D0A882C0FB6D2006659AA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				74CEEEFF2CAF338100357189 /* RMEpisodeListViewViewModel.swift */,
+				74F801ED2C2186D700331DDD /* RMCharacterCollectionViewCellViewModel.swift */,
+				74F801E52C1F68FA00331DDD /* RMCharacterListViewViewModel.swift */,
 				74A000E42CB3F1610041967E /* EpisodeDetail */,
 				74AADBB92CA6E2BD00EE9750 /* CharacterDetail */,
-				74F801E52C1F68FA00331DDD /* RMCharacterListViewViewModel.swift */,
-				74F801ED2C2186D700331DDD /* RMCharacterCollectionViewCellViewModel.swift */,
-				74CEEEFF2CAF338100357189 /* RMEpisodeListViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
