@@ -41,16 +41,10 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            
             detailView.topAnchor.constraint(equalTo: view.topAnchor),
             detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
-            //            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            //            detailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            //            detailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            //            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             
         ])
     }
@@ -60,7 +54,7 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
         
     }
     
-//    MARK: View Delegate
+    //    MARK: View Delegate
     
     func rmEpisodeDetailView(_ detailView: RMEpisodeDetailView, didSelect character: RMCharacter) {
         let vc = RMCharacterDetailViewController(viewModel: .init(character: character))
@@ -69,7 +63,7 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
         navigationController?.pushViewController(vc, animated: true)
     }
     
-//    MARK: - ViewModel Delegate
+    //    MARK: - ViewModel Delegate
     
     func didFetchEpisodeDetails() {
         detailView.configure(with: viewModel)
