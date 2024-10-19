@@ -57,6 +57,7 @@
 		74D01DCC2CC1868800273533 /* RMNoSearchResultsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D01DCB2CC1868800273533 /* RMNoSearchResultsViewViewModel.swift */; };
 		74D01DCE2CC186E200273533 /* RMSearchInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D01DCD2CC186E200273533 /* RMSearchInputView.swift */; };
 		74D01DD02CC1870900273533 /* RMSearchInputViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D01DCF2CC1870900273533 /* RMSearchInputViewViewModel.swift */; };
+		74EBDB072CC4528C00D27BBF /* RMSearchOptionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBDB062CC4528C00D27BBF /* RMSearchOptionPickerViewController.swift */; };
 		74F018AC2CA31D0300017D70 /* RMImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F018AB2CA31D0300017D70 /* RMImageLoader.swift */; };
 		74F801D42C14FCF700331DDD /* RMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F801D32C14FCF700331DDD /* RMService.swift */; };
 		74F801D62C14FD1800331DDD /* RMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F801D52C14FD1800331DDD /* RMRequest.swift */; };
@@ -126,6 +127,7 @@
 		74D01DCB2CC1868800273533 /* RMNoSearchResultsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMNoSearchResultsViewViewModel.swift; sourceTree = "<group>"; };
 		74D01DCD2CC186E200273533 /* RMSearchInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchInputView.swift; sourceTree = "<group>"; };
 		74D01DCF2CC1870900273533 /* RMSearchInputViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchInputViewViewModel.swift; sourceTree = "<group>"; };
+		74EBDB062CC4528C00D27BBF /* RMSearchOptionPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSearchOptionPickerViewController.swift; sourceTree = "<group>"; };
 		74F018AB2CA31D0300017D70 /* RMImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMImageLoader.swift; sourceTree = "<group>"; };
 		74F801D32C14FCF700331DDD /* RMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMService.swift; sourceTree = "<group>"; };
 		74F801D52C14FD1800331DDD /* RMRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRequest.swift; sourceTree = "<group>"; };
@@ -364,9 +366,9 @@
 		74C467E22C3E026E00B42BA2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				74EBDB082CC4543100D27BBF /* Search */,
 				74C467E32C3E02B800B42BA2 /* RMCharacterDetailViewController.swift */,
 				74AADBC02CACA41D00EE9750 /* RMEpisodeDetailViewController.swift */,
-				74CEEF032CB05BCC00357189 /* RMSearchViewController.swift */,
 				744233ED2CBE98E500AD3698 /* RMLocationDetailViewController.swift */,
 			);
 			path = Other;
@@ -396,6 +398,15 @@
 				74D01DC62CC1821400273533 /* RMSearchViewViewModel.swift */,
 				74D01DCB2CC1868800273533 /* RMNoSearchResultsViewViewModel.swift */,
 				74D01DCF2CC1870900273533 /* RMSearchInputViewViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		74EBDB082CC4543100D27BBF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				74EBDB062CC4528C00D27BBF /* RMSearchOptionPickerViewController.swift */,
+				74CEEF032CB05BCC00357189 /* RMSearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -549,6 +560,7 @@
 				74AADBC12CACA41D00EE9750 /* RMEpisodeDetailViewController.swift in Sources */,
 				74CEEEFB2CAE8BEC00357189 /* RMEpisodeDetailView.swift in Sources */,
 				744233F12CBE9C3E00AD3698 /* RMLocationDetailView.swift in Sources */,
+				74EBDB072CC4528C00D27BBF /* RMSearchOptionPickerViewController.swift in Sources */,
 				744233EC2CBD74DB00AD3698 /* RMLocationTableViewCellViewModel.swift in Sources */,
 				74F801EE2C2186D700331DDD /* RMCharacterCollectionViewCellViewModel.swift in Sources */,
 				74F801D62C14FD1800331DDD /* RMRequest.swift in Sources */,
