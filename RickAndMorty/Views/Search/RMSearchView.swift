@@ -23,6 +23,8 @@ final class RMSearchView: UIView {
     
     private let noResultsView = RMNoSearchResultsView()
     
+    private let resultsView = RMSearchResultsView()
+    
     //    Results collectionView
     
     //    MARK: - Init
@@ -32,18 +34,33 @@ final class RMSearchView: UIView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews(noResultsView, searchInputView)
+        addSubviews(resultsView, noResultsView, searchInputView)
         addConstraints()
         
         searchInputView.configure(with: RMSearchInputViewViewModel(type: viewModel.config.type))
         searchInputView.delegate = self
         
+        setUpHandlers(viewModel: viewModel)
+    }
+    
+    private func setUpHandlers(viewModel: RMSearchViewViewModel) {
         viewModel.registerOptionChangeBlock { tuple in
             self.searchInputView.update(option: tuple.0, value: tuple.1)
         }
         
-        viewModel.registerSearchResultHandler { results in
-            print(results)
+        viewModel.registerSearchResultHandler { [weak self] results in
+            DispatchQueue.main.async {
+                self?.resultsView.configure(with: results)
+                self?.noResultsView.isHidden = true
+                self?.resultsView.isHidden = false
+            }
+        }
+        
+        viewModel.registerNoResultsHandler { [weak self] in
+            DispatchQueue.main.async {
+                self?.noResultsView.isHidden = false
+                self?.resultsView.isHidden = true
+            }
         }
     }
     
@@ -53,13 +70,18 @@ final class RMSearchView: UIView {
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-//            Search Input view
+            //            Search Input view
             searchInputView .topAnchor.constraint(equalTo: topAnchor),
             searchInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchInputView.trailingAnchor.constraint(equalTo: trailingAnchor),
             searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 55 : 110),
             
-//            No results
+            resultsView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor),
+            resultsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            resultsView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            resultsView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            //            No results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
             noResultsView.heightAnchor.constraint(equalToConstant: 150),
             noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -93,7 +115,7 @@ extension RMSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension RMSearchView: RMSearchInputViewDelegate {
     func rmSearchInputViewDidTapSearchKeyboardButton(_ inputView: RMSearchInputView) {
-        viewModel.executeSearch()    
+        viewModel.executeSearch()
     }
     
     func rmSearchInputView(_ inputView: RMSearchInputView, didChangeSearchText text: String) {
@@ -104,4 +126,4 @@ extension RMSearchView: RMSearchInputViewDelegate {
         delegate?.rmSearchView(self, didSelectOption: option)
     }
 }
-    
+
