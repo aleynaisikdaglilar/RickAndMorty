@@ -118,3 +118,37 @@ extension RMLocationView: UITableViewDataSource {
         return cell
     }
 }
+
+extension RMLocationView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let viewModel = viewModel,
+              !viewModel.cellViewModels.isEmpty,
+              viewModel.shouldShowLoadMoreIndicator,
+              !viewModel.isLoadingMoreLocations else {
+            return
+        }
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] t in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScroolViewFixedHeight = scrollView.frame.size.height
+            
+            if offset >= (totalContentHeight - totalScroolViewFixedHeight - 120) {
+                DispatchQueue.main.async {
+                    self?.showLoadingIndicator()
+                }
+                viewModel.fetchAdditionalLocations()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    print("refresh")
+                    self?.tableView.reloadData()
+                })
+            }
+            t.invalidate()
+        }
+    }
+    
+    private func showLoadingIndicator() {
+        let footer = RMTableLoadingFooterView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
+        tableView.tableFooterView = footer
+    }
+}
